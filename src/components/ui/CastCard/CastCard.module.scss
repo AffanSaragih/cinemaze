@@ -1,0 +1,64 @@
+.card {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: rem-calc(12);
+
+  @include md {
+    width: rem-calc(336);
+    height: rem-calc(104);
+    gap: rem-calc(16);
+  }
+
+  .imageWrapper {
+    width: rem-calc(55);
+    height: rem-calc(84);
+    border-radius: get-radius('radius-md');
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+  
+    @include md {
+      width: rem-calc(69);
+      height: rem-calc(104);
+      border-radius: get-radius('radius-lg');
+    }
+
+    .image {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: rem-calc(4);
+  
+    @include md {
+      width: rem-calc(251);
+      height: rem-calc(64);
+      gap: rem-calc(8);
+    }
+  
+    h4 {
+      @include typography('text-sm', 'semibold');
+      color: get-color('neutral', 25);
+  
+      @include md {
+        @include typography('text-md', 'semibold');
+      }
+    }
+    
+    p {
+      @include typography('text-sm', 'regular');
+      color: get-color('neutral', 400);
+  
+      @include md {
+        @include typography('text-md', 'regular');
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+.wrapper {
+  position: fixed;
+  // top: rem-calc(490);
+  right: rem-calc(5);
+  bottom: rem-calc(46);
+  z-index: 100;
+
+  button {
+    width: rem-calc(64);
+    height: rem-calc(64);
+    border-radius: 50%;
+    padding: rem-calc(12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: rem-calc(24);
+      height: rem-calc(24);
+    }
+  }
+
+  @include md {
+    right: rem-calc(345);
+    bottom: rem-calc(56);
+  }
+}
+
+.iconUp {
+  transition: transform 0.3s ease;
+  transform: rotate(180deg);
+}
+
+.iconDown {
+  transition: transform 0.3s ease;
+  transform: rotate(0deg);
+}

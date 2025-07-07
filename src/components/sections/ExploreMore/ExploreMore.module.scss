@@ -1,0 +1,77 @@
+@import '../../../styles/utils/container';
+
+.newReleaseSection {
+  display: flex;
+  flex-direction: column;
+  gap: get-spacing('spacing-3xl');
+  padding: 0 get-spacing('spacing-xl') rem-calc(120) get-spacing('spacing-xl');
+
+  @include md {
+    gap: get-spacing('spacing-5xl');
+    padding: 0 get-spacing('spacing-11xl') rem-calc(140) get-spacing('spacing-11xl');
+  }
+
+  h2 {
+    @include typography('display-xs', 'bold');
+    color: get-color('neutral', 25);
+
+    @include md {
+      @include typography('display-lg', 'bold');
+    }
+  }
+}
+
+.gridWrapper {
+  position: relative;
+  display: grid;
+  gap: get-spacing('spacing-4xl') get-spacing('spacing-xl');
+  grid-template-columns: repeat(auto-fit, minmax(rem-calc(140), 1fr));
+
+  @include md {
+    grid-template-columns: repeat(auto-fit, minmax(rem-calc(200), 1fr));
+    gap: rem-calc(40) get-spacing('spacing-2xl');
+  }
+
+  .grow {
+    justify-self: stretch;
+  }
+}
+
+.loadMoreWrapper {
+  margin-top: rem-calc(40);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  @include md {
+    margin-top: rem-calc(70);
+    margin-bottom: rem-calc(24);
+  }
+
+  .button {
+    width: rem-calc(200);
+
+    @include md {
+      width: rem-calc(230);
+    }
+
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+
+    &:hover,
+    &:focus {
+      background: #e41d02;
+      color: #fff;
+      box-shadow: 0 0.5rem 1rem rgba(228, 29, 2, 0.5);
+      outline: none;
+    }
+
+    &:active {
+      background: darken(#e41d02, 10%);
+    }
+  }
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}

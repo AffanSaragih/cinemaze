@@ -1,0 +1,46 @@
+.toast-close-btn {
+  position: fixed;
+  top: rem-calc(80);
+  left: 50%;
+  transform: translate(-50%, -20px); // posisi awal untuk slide-in
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: rem-calc(341);
+  height: rem-calc(52);
+  padding: 0 rem-calc(24);
+  gap: get-spacing('spacing-lg');
+  border: none;
+  border-radius: get-radius('radius-2xl');
+  background-color: #00000040;
+  cursor: pointer;
+
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+
+  @include md {
+    width: rem-calc(531);
+    top: rem-calc(120);
+  }
+
+  &.show {
+    opacity: 1;
+    transform: translate(-50%, 0); // slide in ke posisi normal
+  }
+
+  &.fade-out {
+    opacity: 0;
+    // tetap di tempat, hanya hilang pelan
+  }
+
+  .checklistIcon {
+    width: rem-calc(24);
+    height: rem-calc(24);
+  }
+
+  .message {
+    color: get-color('neutral', 25);
+    @include typography('text-md', 'medium');
+  }
+}

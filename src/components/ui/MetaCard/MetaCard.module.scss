@@ -1,0 +1,52 @@
+.card {
+  border-radius: get-radius('radius-2xl');
+  border: rem-calc(1) solid get-color('neutral', 800);
+  padding: get-spacing('spacing-xl');
+  gap: get-spacing('spacing-md');
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+
+  @include md {
+    border-radius: get-radius('radius-2xl');
+    padding: get-spacing('spacing-2xl');
+    gap: get-spacing('spacing-md');
+    background-color: #000000;
+  }
+
+  .icon {
+    display: flex;
+
+    svg {
+      width: rem-calc(24);
+      height: rem-calc(24);
+      
+      @include md {
+        width: rem-calc(32);
+        height: rem-calc(32);
+      }
+    }
+  }
+
+  .label {
+    display: flex;
+    @include typography('text-xs', 'regular');
+    color: get-color('neutral', 300);
+
+    @include md {
+      @include typography('text-md', 'regular');
+    }
+  }
+
+  .value {
+    display: flex;
+    @include typography('text-lg', 'semibold');
+    color: get-color('neutral', 25);
+
+    @include md {
+      @include typography('text-xl', 'semibold');
+    }
+  }
+}

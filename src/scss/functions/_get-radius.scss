@@ -1,0 +1,5 @@
+@import '../variables/_radius';
+
+@function get-radius($name) {
+  @return map-get($radius, $name);
+}

@@ -1,0 +1,74 @@
+.loadingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0A0D1299;
+  border: 1px solid get-color('neutral', 800);
+  gap: rem-calc(12);
+  width: rem-calc(200);
+  height: rem-calc(44);
+  border-radius: get-radius('radius-full');
+  
+  @include md {
+    width: rem-calc(230);
+    height: rem-calc(52);
+  }
+
+  .loadingIcon {
+    display: flex;
+    width: rem-calc(18);
+    height: rem-calc(18);
+    animation: blink 1.4s infinite;
+    
+    @include md {
+      width: rem-calc(24);
+      height: rem-calc(24);
+    }
+  }
+
+  .loadingText {
+    display: flex;
+    @include typography('text-sm', 'semibold');;
+    color: get-color('neutral', 25);
+    animation: blink 1.4s infinite;
+
+    @include md {
+      @include typography('text-md', 'semibold');
+    }
+  }
+}
+
+.onlyText {
+  background-color: transparent;
+  border: none;
+  margin: rem-calc(250) auto;
+
+  .loadingIcon {
+    display: none;
+  }
+
+  .loadingText {
+    color: get-color('neutral', 25);
+    animation: blink-wave 1.4s infinite;
+  }
+}
+
+// Spin animasi
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Blink animasi gelombang (dari kiri ke kanan)
+@keyframes blink-wave {
+  0%    { opacity: 0.2; transform: translateX(-2px); }
+  50%   { opacity: 1; transform: translateX(2px); }
+  100%  { opacity: 0.2; transform: translateX(-2px); }
+}
+
+// Animasi Blinking
+@keyframes blink {
+  0%    { opacity: 0.2; }
+  50%   { opacity: 1; }
+  100%  { opacity: 0.2; }
+}

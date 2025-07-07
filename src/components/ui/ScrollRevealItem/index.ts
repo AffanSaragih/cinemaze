@@ -1,0 +1,1 @@
+export { ScrollRevealItem } from './ScrollRevealItem';

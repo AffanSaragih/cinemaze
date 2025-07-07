@@ -1,0 +1,110 @@
+@import '../../../styles/utils/container';
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: auto;
+  justify-content: flex-start;
+  padding-top: rem-calc(250);
+  padding-bottom: rem-calc(35);
+  gap: get-spacing('spacing-3xl');
+
+  @include md {
+    min-height: 100vh;
+    justify-content: flex-end;
+    padding-top: rem-calc(100);
+    padding-bottom: rem-calc(80);
+    gap: get-spacing('spacing-6xl');
+  }
+
+  .background {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: rem-calc(345);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @include md {
+      height: 100vh;
+      filter: brightness(0.74);
+    }
+  }
+
+  .gradientOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    z-index: 1;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      transparent 100%
+    );
+  }
+
+  .content {
+    @extend .container;
+    display: flex;
+    flex-direction: column;
+    gap: get-spacing('spacing-3xl');
+
+    @include md {
+      gap: get-spacing('spacing-6xl');
+      width: rem-calc(1290);
+    }
+  }
+
+  .textBlock {
+    display: flex;
+    flex-direction: column;
+    gap: get-spacing('spacing-sm');
+
+    @include md {
+      width: rem-calc(635);
+      gap: get-spacing('spacing-xl');
+    }
+
+    .title {
+      @include typography('display-xs', 'bold');
+      color: get-color('neutral', 25);
+
+      @include md {
+        @include typography('display-2xl', 'bold');
+      }
+    }
+
+    .overview {
+      @include typography('text-sm', 'regular');
+      color: get-color('neutral', 400);
+
+      @include md {
+        @include typography('text-md', 'regular');
+      }
+    }
+  }
+
+  .actionsBlock {
+    display: flex;
+    flex-direction: column;
+    gap: get-spacing('spacing-xl');
+
+    @include md {
+      flex-direction: row;
+      width: rem-calc(476);
+    }
+  }
+}
+.hideOnMobile {
+  display: none;
+  @include md {
+    display: block;
+  }
+}
+

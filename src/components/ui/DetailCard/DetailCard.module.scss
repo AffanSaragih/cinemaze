@@ -1,0 +1,280 @@
+.detailContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: get-spacing('spacing-3xl');
+  padding: rem-calc(222) get-spacing('spacing-xl') rem-calc(40)
+    get-spacing('spacing-xl');
+
+  @include md {
+    gap: get-spacing('spacing-6xl');
+    padding: rem-calc(412) get-spacing('spacing-11xl') rem-calc(149)
+      get-spacing('spacing-11xl');
+  }
+
+  .background {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: rem-calc(345);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @include md {
+      height: 100vh;
+      filter: brightness(0.74);
+    }
+  }
+
+  .gradientOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    z-index: 1;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      transparent 100%
+    );
+  }
+
+  .detailCard {
+    display: flex;
+    flex-direction: column;
+    gap: get-spacing('spacing-3xl');
+
+    @include md {
+      flex-direction: row;
+      gap: 0;
+    }
+
+    .top {
+      display: flex;
+      gap: get-spacing('spacing-xl');
+      width: 100%;
+
+      @include md {
+        gap: get-spacing('spacing-4xl');
+      }
+
+      .poster {
+        width: rem-calc(116);
+        height: rem-calc(171);
+        border-radius: get-radius('radius-xl');
+        overflow: hidden;
+        flex-shrink: 0;
+        object-fit: cover;
+
+        @include md {
+          width: rem-calc(260);
+          height: rem-calc(384);
+        }
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        gap: get-spacing('spacing-xs');
+        color: get-color('neutral', 25);
+
+        @include md {
+          display: none;
+        }
+
+        .title {
+          display: flex;
+          @include typography('text-xl', 'bold');
+        }
+
+        .date {
+          display: flex;
+          align-items: center;
+          gap: get-spacing('spacing-xs');
+
+          .icon {
+            display: flex;
+            width: rem-calc(20);
+            height: rem-calc(20);
+          }
+
+          .releaseDate {
+            display: flex;
+            @include typography('text-sm', 'regular');
+          }
+        }
+      }
+
+      .cardContent {
+        display: none;
+
+        @include md {
+          display: flex;
+          flex-direction: column;
+          gap: get-spacing('spacing-3xl');
+          width: 100%;
+
+          .info {
+            display: flex;
+            flex-direction: column;
+            gap: get-spacing('spacing-xl');
+            color: get-color('neutral', 25);
+
+            .title {
+              display: flex;
+              @include typography('display-xl', 'bold');
+            }
+
+            .date {
+              display: flex;
+              align-items: center;
+              gap: get-spacing('spacing-md');
+
+              .icon {
+                display: flex;
+                width: rem-calc(24);
+                height: rem-calc(24);
+              }
+
+              .releaseDate {
+                display: flex;
+                @include typography('text-md', 'regular');
+              }
+            }
+          }
+
+          .ctaButton {
+            display: flex;
+            gap: get-spacing('spacing-xl');
+            width: rem-calc(288);
+
+            .favoriteButtonWrapper {
+              button {
+                width: rem-calc(52);
+                padding: 0;
+                border: 1px solid get-color('neutral', 900);
+
+                .heartIcon {
+                  width: rem-calc(24);
+                  height: rem-calc(24);
+                }
+
+                &.active .heartIcon {
+                  fill: #e41d02;
+                  transform: scale(1.1);
+                }
+              }
+            }
+          }
+
+          .metaCards {
+            display: flex;
+            gap: get-spacing('spacing-2xl');
+          }
+        }
+      }
+    }
+
+    .ctaButton {
+      display: flex;
+      gap: get-spacing('spacing-xl');
+
+      @include md {
+        display: none;
+      }
+
+      .favoriteButtonWrapper {
+        button {
+          width: rem-calc(44);
+          padding: 0;
+          border: 1px solid get-color('neutral', 900);
+
+          .heartIcon {
+            width: rem-calc(18.86);
+            height: rem-calc(18.86);
+
+            @include md {
+              width: rem-calc(24);
+              height: rem-calc(24);
+            }
+          }
+
+          &.active .heartIcon {
+            fill: #e41d02;
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+
+    .metaCards {
+      display: flex;
+      gap: get-spacing('spacing-lg');
+
+      @include md {
+        display: none;
+      }
+    }
+  }
+
+  .overview {
+    display: flex;
+    flex-direction: column;
+    gap: get-spacing('spacing-md');
+
+    .overviewTitle {
+      display: flex;
+      color: get-color('neutral', 25);
+      @include typography('text-xl', 'bold');
+
+      @include md {
+        @include typography('display-md', 'bold');
+      }
+    }
+
+    .overviewText {
+      display: flex;
+      color: get-color('neutral', 400);
+      @include typography('text-sm', 'regular');
+
+      @include md {
+        @include typography('text-md', 'regular');
+      }
+    }
+  }
+
+  .castAndCrew {
+    display: flex;
+    flex-direction: column;
+    gap: get-spacing('spacing-xl');
+
+    @include md {
+      gap: get-spacing('spacing-3xl');
+    }
+
+    .castsAndCrews {
+      color: get-color('neutral', 25);
+      @include typography('text-xl', 'bold');
+
+      @include md {
+        @include typography('display-md', 'bold');
+      }
+    }
+
+    .casters {
+      display: flex;
+      flex-direction: column;
+      gap: get-spacing('spacing-xl');
+
+      @include md {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: get-spacing('spacing-5xl');
+      }
+    }
+  }
+}

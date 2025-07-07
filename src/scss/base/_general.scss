@@ -1,0 +1,20 @@
+@import '../variables/fonts';
+@import '../functions/rem-calc';
+
+:root {
+  font-family: $font-family-base;
+}
+
+body {
+  background: get-color('base', 'black');
+}
+
+.container {
+  max-width: rem-calc(1440);
+  margin: 0 auto;
+  padding: 0 rem-calc(16);
+
+  @include md {
+    padding: 0 rem-calc(140);
+  }
+}
