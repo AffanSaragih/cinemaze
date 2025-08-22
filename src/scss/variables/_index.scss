@@ -1,5 +1,4 @@
-@forward 'colors';
-@forward 'spacing';
-@forward 'radius';
-@forward 'fonts';
-
+@forward "./fonts";
+@forward "./spacing";
+@forward "./colors";
+@forward "./radius";
