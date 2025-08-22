@@ -1,3 +1,5 @@
+@use "@/scss/_shared" as *;
+
 $spacing: (
   'spacing-none': 0rem,
   'spacing-xxs': 0.125rem,
@@ -18,3 +20,6 @@ $spacing: (
   'spacing-11xl': 8.75rem,
   'spacing-12xl': 10rem, 
 );
+
+
+

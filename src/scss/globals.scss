@@ -1,3 +1,6 @@
+@use "./base/index" as *;
+@use "@/scss/_shared" as *;
+
 /* src/scss/globals.scss */
 @use './_shared' as *;
 @use './base' as *;

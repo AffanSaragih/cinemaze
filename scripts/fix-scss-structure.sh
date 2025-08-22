@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 set -euo pipefail
 
 ROOT="src/scss"
@@ -43,21 +44,20 @@ EOF
 echo "===> Remove redundant variables/_shared.scss if exists..."
 rm -f "$ROOT/variables/_shared.scss" || true
 
-# helper to ensure a file has a line at very top (without duplicating)
+# helper: pastikan baris @use hub ada di paling atas (tanpa duplikasi)
 ensure_use_top () {
   local file="$1"
   local line='@use "@/scss/_shared" as *;'
-  # skip base files (CSS emitters) – mereka di-load via globals.scss
   case "$file" in
-    *"/base/"*) return 0;;
+    *"/base/"*) return 0;;   # skip file base (CSS emitter)
   esac
   [[ "$file" =~ \.scss$ ]] || return 0
 
   if grep -qF "$line" "$file"; then
-    # pastikan baris tsb ada di paling atas (sebelum rules lain)
+    # pastikan berada di paling atas
     local first_nonempty
     first_nonempty=$(awk 'NF{print;exit}' "$file")
-    if [[ "$first_nonempty" != "$line" ]]; then
+    if [[ "${first_nonempty:-}" != "$line" ]]; then
       tmp=$(mktemp)
       { echo "$line"; echo; grep -vF "$line" "$file"; } > "$tmp"
       mv "$tmp" "$file"
@@ -70,13 +70,19 @@ ensure_use_top () {
 }
 
 echo "===> Convert legacy @import and inject hub usage..."
-# 1) hapus semua baris @import (tanpa ripgrep)
-mapfile -t import_files < <(grep -RIl --include='*.scss' '@import' src || true)
-for f in "${import_files[@]:-}"; do
-  sed -i '/@import/d' "$f"
-done
 
-# 2) pastikan @use hub ada di paling atas setiap .scss (kecuali /base/)
+# 1) Hapus semua baris @import (robust; aman kalau tidak ada hasil)
+mapfile -d '' -t import_files < <(grep -RIZl --include='*.scss' '@import' src || true)
+if ((${#import_files[@]} > 0)); then
+  for f in "${import_files[@]}"; do
+    [[ -n "$f" && -f "$f" ]] || continue
+    sed -i '/@import/d' "$f"
+  done
+else
+  echo "    (no @import found)"
+fi
+
+# 2) Pastikan @use hub ada di paling atas setiap .scss (kecuali /base/)
 while IFS= read -r -d '' f; do
   ensure_use_top "$f"
 done < <(find src -type f -name '*.scss' -print0)

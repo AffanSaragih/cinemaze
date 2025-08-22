@@ -1,3 +1,5 @@
+@use "@/scss/_shared" as *;
+
 
 .card {
   border-radius: get-radius('radius-2xl');

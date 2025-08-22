@@ -1,3 +1,5 @@
+@use "@/scss/_shared" as *;
+
 /* src/scss/app-layout.scss — TIDAK ADA @use di file ini */
 html, body, #root {
   height: 100%;
