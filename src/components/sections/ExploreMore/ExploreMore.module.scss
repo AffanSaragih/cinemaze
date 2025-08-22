@@ -1,14 +1,17 @@
-@import '../../../styles/utils/container';
+@use "@/scss/_shared" as *;
 
-.newReleaseSection {
-  display: flex;
-  flex-direction: column;
-  gap: get-spacing('spacing-3xl');
-  padding: 0 get-spacing('spacing-xl') rem-calc(120) get-spacing('spacing-xl');
+@use "sass:color";
+
+.newReleaseSection :global(.container) {
+  display: block;
+  max-width: rem-calc(1210);
+  width: 100%;
+  padding-left: rem-calc(16);
+  padding-right: rem-calc(16);
 
   @include md {
-    gap: get-spacing('spacing-5xl');
-    padding: 0 get-spacing('spacing-11xl') rem-calc(140) get-spacing('spacing-11xl');
+    padding-left: rem-calc(24);
+    padding-right: rem-calc(24);
   }
 
   h2 {
@@ -21,19 +24,31 @@
   }
 }
 
+.exploreMoreTitle {
+  padding-top: get-spacing('spacing-1xl');
+  padding-bottom: get-spacing('spacing-3xl');
+
+  @include md {
+    padding-top: get-spacing('spacing-5xl');
+    padding-bottom: get-spacing('spacing-6xl');
+  }
+}
+
 .gridWrapper {
   position: relative;
   display: grid;
-  gap: get-spacing('spacing-4xl') get-spacing('spacing-xl');
-  grid-template-columns: repeat(auto-fit, minmax(rem-calc(140), 1fr));
+  min-width: 0;
+  width: 100%;
+  justify-items: stretch;
+  align-items: stretch;
+
+  /* keep a single gap declaration */
+  gap: rem-calc(16);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 
   @include md {
-    grid-template-columns: repeat(auto-fit, minmax(rem-calc(200), 1fr));
-    gap: rem-calc(40) get-spacing('spacing-2xl');
-  }
-
-  .grow {
-    justify-self: stretch;
+    gap: rem-calc(5);
+    grid-template-columns: repeat(5, minmax(rem-calc(200), 1fr));
   }
 }
 
@@ -51,11 +66,12 @@
   .button {
     width: rem-calc(200);
 
+    /* ⬇️ Deklarasi dipindah ke atas nested rule untuk hilangkan mixed-decls warning */
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+
     @include md {
       width: rem-calc(230);
     }
-
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 
     &:hover,
     &:focus {
@@ -66,7 +82,8 @@
     }
 
     &:active {
-      background: darken(#e41d02, 10%);
+      /* darken(#e41d02, 10%) → color.adjust */
+      background: color.adjust(#e41d02, $lightness: -10%);
     }
   }
 }

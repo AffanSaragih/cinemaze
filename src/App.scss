@@ -1,0 +1,7 @@
+@use "@/scss/_shared" as *;
+
+/* src/App.scss — HANYA baris-baris ini */
+@use '@/scss/_shared' as *;
+@use '@/styles/utils/container';
+@use '@/scss/globals';
+@use '@/scss/app-layout'; /* file helper yang berisi CSS App lama */

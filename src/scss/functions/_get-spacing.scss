@@ -1,5 +1,17 @@
-@import '../variables/_spacing';
+@use "@/scss/_shared" as *;
 
-@function get-spacing($name) {
-  @return map-get($spacing, $name);
+@use "sass:map";
+@use "../variables/spacing" as *;
+
+/// Ambil nilai spacing dari $spacing map.
+/// Usage: margin: get-spacing('md'); 
+///        padding: get-spacing('xxl', 2rem); // fallback jika key tidak ada
+@function get-spacing($name, $fallback: null) {
+  @if map.has-key($spacing, $name) {
+    @return map.get($spacing, $name);
+  } @else if $fallback != null {
+    @return $fallback;
+  } @else {
+    @error 'Unknown spacing "#{$name}". Available keys: #{map.keys($spacing)}';
+  }
 }

@@ -1,2 +1,4 @@
-@import 'breakpoints';
-@import 'typography';
+@use "@/scss/_shared" as *;
+
+@forward "./breakpoints";
+@forward "./typography";

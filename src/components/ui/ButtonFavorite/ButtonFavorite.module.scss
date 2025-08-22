@@ -1,0 +1,27 @@
+@use "@/scss/_shared" as *;
+
+
+.favoriteButton {
+  width: rem-calc(44);
+  padding: 0;
+  border: 1px solid get-color('neutral', 900);
+
+  .heartIcon {
+    width: rem-calc(18.86);
+    height: rem-calc(18.86);
+
+    @include md {
+      width: rem-calc(24);
+      height: rem-calc(24);
+    }
+  }
+
+  &.active .heartIcon {
+    fill: #e41d02;
+    transform: scale(1.1);
+  }
+
+  @include md {
+    width: rem-calc(52);
+  }
+}

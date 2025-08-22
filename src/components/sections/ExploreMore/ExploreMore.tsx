@@ -9,7 +9,7 @@ import clsx from 'clsx';
 import toast from 'react-hot-toast';
 import styles from './ExploreMore.module.scss';
 import { ScrollRevealItem } from '@/components/ui/ScrollRevealItem';
-import { MovieCard } from '@/components/ui/MovieCard';
+import { MovieCardPreview } from '@/components/ui/MovieCardPreview/MovieCardPreview';
 import { Button } from '@/components/ui/Button';
 import { LoadingAnimation } from '@/components/ui/LoadingAnimation';
 import { getPopularMoviesChunk } from '@/services/getPopularMoviesChunk';
@@ -117,33 +117,33 @@ export const ExploreMore: React.FC<ExploreMoreProps> = ({ onReady }) => {
   const disabledFlags = useDisableLastRow(visibleMovies, lastRowIndices);
 
   return (
-    <section className={`${styles.newReleaseSection} container`}>
-      <h2>Explore More</h2>
-      <div ref={gridRef} className={styles.gridWrapper}>
-        {visibleMovies.map((movie, index) => (
-          <ScrollRevealItem
-            key={`${movie.id}-${index}`}
-            className={clsx(styles.grow, styles.cardReveal)}
-          >
-            <MovieCard {...movie} isDisabled={disabledFlags[index]} />
-          </ScrollRevealItem>
-        ))}
+    <section className={styles.newReleaseSection}>
+      <div className='container'>
+        <h2 className={styles.exploreMoreTitle}>Explore More</h2>
+        <div ref={gridRef} className={styles.gridWrapper}>
+          {visibleMovies.map((movie, index) => (
+            <ScrollRevealItem
+              key={`${movie.id}-${index}`}
+              className={clsx(styles.grow, styles.cardReveal)}
+            >
+              <MovieCardPreview {...movie} isDisabled={disabledFlags[index]} />
+            </ScrollRevealItem>
+          ))}
+        </div>
+        <div className={styles.loadMoreWrapper}>
+          {isLoading ? (
+            <LoadingAnimation text='Loading...' />
+          ) : (
+            <Button
+              variant='secondary'
+              onClick={handleLoadMore}
+              className={styles.button}
+            >
+              Load More
+            </Button>
+          )}
+        </div>
       </div>
-
-      <div className={styles.loadMoreWrapper}>
-        {isLoading ? (
-          <LoadingAnimation text='Loading...' />
-        ) : (
-          <Button
-            variant='secondary'
-            onClick={handleLoadMore}
-            className={styles.button}
-          >
-            Load More
-          </Button>
-        )}
-      </div>
-
       <ScrollButton />
     </section>
   );

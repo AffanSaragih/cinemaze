@@ -40,7 +40,7 @@ export const ScrollButton: React.FC<ScrollButtonProps> = ({ onClick }) => {
 
   return (
     <div className={styles.wrapper}>
-      <Button variant='primary' fullWidth={false} onClick={handleClick}>
+      <Button variant='secondary' fullWidth={false} onClick={handleClick}>
         <ArrowIcon className={isBottom ? styles.iconDown : styles.iconUp} />
       </Button>
     </div>

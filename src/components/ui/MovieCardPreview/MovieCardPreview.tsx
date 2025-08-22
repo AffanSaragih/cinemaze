@@ -1,16 +1,30 @@
 import React, { useState, memo } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import clsx from 'clsx';
-import styles from './MovieCard.module.scss';
+import styles from './MovieCardPreview.module.scss';
 import StarIcon from '@/assets/Star.svg';
 import { BaseMovie } from '@/types/movie';
 
-interface MovieCardProps extends BaseMovie {
+// Tipe prop untuk komponen utama
+interface MovieCardPreviewProps extends BaseMovie {
   isDisabled?: boolean;
   trailerKey?: string;
   hideActions?: boolean;
+  className?: string;
 }
+
+// Tipe prop untuk CardContent (harus dipisah)
+type CardContentProps = {
+  title: string;
+  imgSrc: string;
+  isTrending: boolean;
+  index?: number;
+  rating: number;
+  isHovered?: boolean;
+  trailerKey?: string;
+  className?: string;
+};
 
 const hoverVariants = {
   rest: { scale: 1 },
@@ -20,15 +34,8 @@ const hoverVariants = {
   },
 };
 
-const CardContent: React.FC<{
-  title: string;
-  imgSrc: string;
-  isTrending: boolean;
-  index?: number;
-  rating: number;
-  isHovered?: boolean;
-  trailerKey?: string;
-}> = memo(
+// CardContent sudah aman menerima className
+const CardContent: React.FC<CardContentProps> = memo(
   ({
     title,
     imgSrc,
@@ -37,9 +44,10 @@ const CardContent: React.FC<{
     rating,
     isHovered = false,
     trailerKey,
+    className,
   }) => (
     <motion.div
-      className={styles.card}
+      className={clsx(styles.card, className)}
       variants={hoverVariants}
       initial='rest'
       whileHover='hover'
@@ -79,7 +87,6 @@ const CardContent: React.FC<{
         {isTrending && typeof index === 'number' && (
           <div className={styles.trendingBadge}>{index + 1}</div>
         )}
-        {/* Tidak ada tombol overlay */}
       </div>
       <div className={styles.info}>
         <p className={styles.title}>{title}</p>
@@ -93,7 +100,7 @@ const CardContent: React.FC<{
 );
 CardContent.displayName = 'CardContent';
 
-export const MovieCard: React.FC<MovieCardProps> = memo(
+export const MovieCardPreview: React.FC<MovieCardPreviewProps> = memo(
   ({
     id,
     title,
@@ -103,10 +110,10 @@ export const MovieCard: React.FC<MovieCardProps> = memo(
     index,
     isDisabled = false,
     trailerKey,
+    className,
   }) => {
     const imgSrc = poster || '/placeholder.jpg';
     const [isHovered, setIsHovered] = useState(false);
-    const navigate = useNavigate();
 
     const content = (
       <CardContent
@@ -117,12 +124,13 @@ export const MovieCard: React.FC<MovieCardProps> = memo(
         rating={rating}
         isHovered={isHovered}
         trailerKey={trailerKey}
+        className={className}
       />
     );
 
     return isDisabled ? (
       <div
-        className={clsx(styles.link, styles.disabled)}
+        className={clsx(styles.link, styles.disabled, className)}
         aria-disabled='true'
         tabIndex={-1}
         onMouseEnter={() => setIsHovered(true)}
@@ -133,7 +141,7 @@ export const MovieCard: React.FC<MovieCardProps> = memo(
     ) : (
       <Link
         to={`/detail/${id}`}
-        className={styles.link}
+        className={clsx(styles.link, className)}
         aria-label={`See detail for ${title}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -144,5 +152,5 @@ export const MovieCard: React.FC<MovieCardProps> = memo(
   }
 );
 
-MovieCard.displayName = 'MovieCard';
-export default MovieCard;
+MovieCardPreview.displayName = 'MovieCardPreview';
+export default MovieCardPreview;

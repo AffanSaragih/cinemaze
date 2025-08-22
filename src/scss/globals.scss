@@ -1,12 +1,11 @@
-@import './base';
-@import '../styles/utils/container';
+@use "./base/index" as *;
+@use "@/scss/_shared" as *;
 
-.reveal-trending {
-  opacity: 0;
-  transform: translateY(100px);
-  transition: opacity 0.6s, transform 0.6s;
+/* src/scss/globals.scss */
+@use './_shared' as *;
+@use './base' as *;
+
+:root {
+  --font-sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
 }
-.reveal-trending.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+html, body { font-family: var(--font-sans); }
