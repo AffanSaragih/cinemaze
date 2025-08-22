@@ -1,3 +1,10 @@
-@import 'functions';
-@import 'variables';
-@import 'mixins';
+/* src/scss/_shared.scss */
+@forward "variables/fonts";
+@forward "variables/spacing";
+@forward "variables/colors"; // jika ada
+@forward "functions/rem-calc";
+@forward "functions/get-spacing";
+@forward "functions/get-color"; // jika ada get-color yang kamu pakai di kode
+@forward "mixins/typography";
+@forward "mixins/breakpoints";
+@forward "mixins/layout"; // jika kamu membuat mixin container()

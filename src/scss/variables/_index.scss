@@ -1,2 +1,5 @@
-@import 'colors';
-@import 'fonts';
+@forward 'colors';
+@forward 'spacing';
+@forward 'radius';
+@forward 'fonts';
+

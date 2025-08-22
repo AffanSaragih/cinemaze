@@ -1,5 +1,5 @@
-@import 'reset';
-@import 'normalize';
-@import 'fontFamily';
-@import 'general';
-@import 'base.background';
+@forward "reset";
+@forward "normalize";
+@forward "fontFamily";
+@forward "general";
+@forward "base.background";

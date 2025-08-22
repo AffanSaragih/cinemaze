@@ -45,7 +45,7 @@ export const Hero: React.FC<BaseMovie> = ({
         </div>
       )}
 
-      <div className={`container ${styles.content}`}>
+      <div className={styles.content}>
         <div className={styles.textBlock}>
           <h1 className={styles.title}>{title || 'Untitled Movie'}</h1>
           <p className={`${styles.overview} ${styles.hideOnMobile}`}>

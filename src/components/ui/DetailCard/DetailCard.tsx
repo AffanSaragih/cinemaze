@@ -11,6 +11,7 @@ import { Toast } from '@/components/ui/Toast';
 import { MovieDetail } from '@/types/movie';
 import { formatDateToIndoLong } from '@/utils/formatDate';
 import { fetchTrailerKey } from '@/utils/fetchTrailer';
+import { useFavoriteStore } from '@/store/useFavoriteStore';
 import CalendarIcon from '@/assets/Calendar.svg';
 import PlayIcon from '@/assets/Play.svg';
 import StarIcon from '@/assets/Star.svg';
@@ -86,17 +87,30 @@ export const DetailCard: React.FC<MovieDetail> = ({
   ageLimit,
   casts = [],
 }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const isFavorite = useFavoriteStore((s) => s.isFavorite(id));        // <-- Tambahan!
+  const addFavorite = useFavoriteStore((s) => s.addFavorite);          // <-- Tambahan!
+  const removeFavorite = useFavoriteStore((s) => s.removeFavorite);    // <-- Tambahan!
+
+  // State lokal lain (toast, loading, dll)
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const toggleFavorite = () => {
-    const newState = !isFavorite;
-    setIsFavorite(newState);
-    setToastMessage(
-      newState ? 'Success Add to Favorites' : 'Success Remove from Favorites'
-    );
+
+  const toggleFavorite = () => { // <-- Tambahan!
+    if (isFavorite) {
+      removeFavorite(id);
+      setToastMessage('Removed from Favorites');
+    } else {
+      addFavorite({
+        id,
+        poster,
+        title,
+        rating,
+        overview,
+      });
+      setToastMessage('Added to Favorites');
+    }
     setShowToast(true);
   };
 

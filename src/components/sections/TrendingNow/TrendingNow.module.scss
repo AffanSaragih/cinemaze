@@ -1,16 +1,17 @@
-@import '../../../styles/utils/container';
+
 
 .trendingSection {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: get-spacing('spacing-5xl') get-spacing('spacing-xl');
   gap: get-spacing('spacing-3xl');
+  padding-top: get-spacing('spacing-5xl');
+  padding-bottom: get-spacing('spacing-8xl');
 
   @include md {
-    padding: 0 get-spacing('spacing-11xl') get-spacing('spacing-8xl')
-      get-spacing('spacing-11xl');
     gap: get-spacing('spacing-5xl');
+    padding-top: get-spacing('spacing-8xl');
+    padding-bottom: get-spacing('spacing-12xl');
   }
 
   h2 {

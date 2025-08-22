@@ -1,9 +1,14 @@
+
 .wrapper {
   position: fixed;
-  // top: rem-calc(490);
-  right: rem-calc(5);
-  bottom: rem-calc(46);
-  z-index: 100;
+  right: rem-calc(16); // Mobile
+  bottom: rem-calc(24);
+  z-index: 3000;
+
+  @include md {
+    right: rem-calc(270); // Sedikit lebih ke dalam di desktop
+    bottom: rem-calc(56);
+  }
 
   button {
     width: rem-calc(64);
@@ -18,11 +23,6 @@
       width: rem-calc(24);
       height: rem-calc(24);
     }
-  }
-
-  @include md {
-    right: rem-calc(345);
-    bottom: rem-calc(56);
   }
 }
 

@@ -1,0 +1,31 @@
+
+.favoriteWrapper {
+  &::after {
+    content: '';
+    display: block;
+    height: 25vh;
+    @include md {
+      content: '';
+      height: 25vh;
+      display: block;
+    }
+  }
+
+  .title {
+    margin-left: rem-calc(0);
+    padding-left: rem-calc(0);
+    padding-top: rem-calc(88);
+    color: get-color('neutral', 25);
+    @include typography('display-xs', 'bold');
+
+    @include md {
+      padding-top: rem-calc(154);
+      @include typography('display-lg', 'bold');
+    }
+  }
+
+  .found {
+    padding-bottom: rem-calc(150);
+  }
+}
+

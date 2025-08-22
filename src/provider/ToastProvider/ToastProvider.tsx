@@ -1,13 +1,11 @@
-'use client';
-
 import React, { createContext, useContext } from 'react';
 import { useToastStore } from '@/hooks/useToast';
 import { Toast } from '@/components/ui/Toast';
+import styles from './ToastProvider.module.scss';
 
 interface ToastContextProps {
-  showToast: (message: string) => void;
+  showToast: (message: string, duration?: number) => void;
 }
-
 const ToastContext = createContext<ToastContextProps | undefined>(undefined);
 
 export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
@@ -16,20 +14,19 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-
-      {/* Toast container */}
-      {toasts.map((toast) => (
-        <Toast
-          key={toast.id}
-          message={toast.message}
-          onClose={() => removeToast(toast.id)}
-        />
-      ))}
+      <div className={styles.toastRoot}>
+        {toasts.map((toast) => (
+          <Toast
+            key={toast.id}
+            message={toast.message}
+            onClose={() => removeToast(toast.id)}
+          />
+        ))}
+      </div>
     </ToastContext.Provider>
   );
 };
 
-// Hook to consume toast context
 export const useToastContext = (): ToastContextProps => {
   const context = useContext(ToastContext);
   if (!context) {

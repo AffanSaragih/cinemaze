@@ -1,13 +1,11 @@
-@import '../../../styles/utils/container';
-
 .hero {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: auto;
+  min-height: 60vh;
   justify-content: flex-start;
-  padding-top: rem-calc(250);
-  padding-bottom: rem-calc(35);
+  padding-top: rem-calc(300);
+  background: none;
   gap: get-spacing('spacing-3xl');
 
   @include md {
@@ -29,7 +27,7 @@
     background-repeat: no-repeat;
 
     @include md {
-      height: 100vh;
+      height: 80vh;
       filter: brightness(0.74);
     }
   }
@@ -50,14 +48,20 @@
   }
 
   .content {
-    @extend .container;
+    /* ⛔️ Hapus @extend .container; */
+    /* ✅ Container style lokal (aman untuk CSS Modules) */
+    width: min(1120px, 100% - rem-calc(32));
+    margin-inline: auto;
+    padding-inline: rem-calc(16);
+
     display: flex;
     flex-direction: column;
     gap: get-spacing('spacing-3xl');
 
     @include md {
       gap: get-spacing('spacing-6xl');
-      width: rem-calc(1290);
+      width: min(1120px, 100% - rem-calc(64));
+      padding-inline: rem-calc(24);
     }
   }
 
@@ -81,11 +85,21 @@
     }
 
     .overview {
-      @include typography('text-sm', 'regular');
-      color: get-color('neutral', 400);
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #a4a7ae;
+      font-size: 0.93rem;
+      line-height: 1.8;
+      padding: 0.25rem 0;
 
       @include md {
-        @include typography('text-md', 'regular');
+        -webkit-line-clamp: unset;
+        font-size: 1.07rem;
+        line-height: 2;
+        padding: 0.5rem 0;
       }
     }
   }
@@ -101,10 +115,3 @@
     }
   }
 }
-.hideOnMobile {
-  display: none;
-  @include md {
-    display: block;
-  }
-}
-

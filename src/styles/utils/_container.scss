@@ -1,6 +1,7 @@
+@use '@/scss/_shared' as *;
 .container {
   width: 100%;
-  max-width: rem-calc(1440);
+  max-width: rem-calc(1200);
   margin-inline: auto;
   padding-inline: rem-calc(16);
 

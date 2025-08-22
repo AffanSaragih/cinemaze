@@ -1,0 +1,12 @@
+.toastRoot {
+  position: fixed;
+  top: 32px;
+  left: 0;
+  width: 100vw;
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem-calc(12);
+  pointer-events: none;
+}

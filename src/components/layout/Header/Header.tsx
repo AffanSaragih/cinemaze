@@ -2,25 +2,73 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import styles from './Header.module.scss';
-import SearchBox from '@/components/ui/SearchB0x/SearchBox';
-import CloseIcon from '@/assets/Close.svg';
+import { SearchBox } from '@/components/ui/SearchBox/SearchBox';
+import { useSearch } from '@/context/SearchContext';
+
+import CloseIcon from '@/assets/CloseRound.svg';
 import LeftArrowIcon from '@/assets/LeftArrow.svg';
 import MenuIcon from '@/assets/HamburgerMenu.svg';
 import SearchIcon from '@/assets/Search.svg';
 
+// CHANGED: SSR-safe init (hindari akses window saat init)
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false); // CHANGED
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isMobile;
+};
+
 export const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const {
+    searchTerm,
+    setSearchTerm,
+    searchOpen,
+    openSearch,
+    closeSearch,
+  } = useSearch();
+
+  const isMobile = useIsMobile();
+  const open = openSearch ?? (() => {});
+  const close = closeSearch ?? (() => {});
+  const elevated = scrolled || searchOpen;
+
   useEffect(() => {
-    document.body.style.overflow = menuOpen || searchOpen ? 'hidden' : 'auto';
-  }, [menuOpen, searchOpen]);
+    document.body.style.overflow =
+      menuOpen || (isMobile && searchOpen) ? 'hidden' : 'auto';
+  }, [menuOpen, searchOpen, isMobile]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 0);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const el = document.querySelector('header');
+    if (!el) return;
+    const apply = () => {
+      const h = Math.round(el.getBoundingClientRect().height);
+      document.documentElement.style.setProperty('--header-height', `${h}px`);
+    };
+
+    apply();
+    const ro = new ResizeObserver(apply);
+    ro.observe(el);
+
+    const onResize = () => apply();
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', onResize);
+    };
   }, []);
 
   return (
@@ -29,7 +77,7 @@ export const Header: React.FC = () => {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className={clsx(styles.header, scrolled && styles.scrolled)}
+        className={clsx(styles.header, elevated && styles.scrolled)}
       >
         <div className='container'>
           <div className={styles.inner}>
@@ -37,19 +85,22 @@ export const Header: React.FC = () => {
               <span className={styles.logoText}>cinemaze</span>
             </div>
 
+            {/* Mobile actions */}
             <div className={styles.mobileActions}>
-              <div
+              <button
                 className={styles.searchToggle}
-                onClick={() => setSearchOpen(true)}
+                onClick={open}
+                aria-label='Open search'
               >
                 <SearchIcon />
-              </div>
-              <div
+              </button>
+              <button
                 className={styles.menuToggle}
                 onClick={() => setMenuOpen(true)}
+                aria-label='Open menu'
               >
                 <MenuIcon />
-              </div>
+              </button>
             </div>
 
             {/* Nav (desktop only) */}
@@ -62,29 +113,60 @@ export const Header: React.FC = () => {
               </a>
             </nav>
 
-            {/* SearchBox (desktop only) */}
-            <div className={styles.search}>
-              <SearchBox placeholder='Search Movie' />
-            </div>
+            {/* Desktop SearchBox (kanan atas) */}
+            {!isMobile && (
+              <div className={styles.search}>
+                <div className={styles.searchDesktopWrap}>{/* CHANGED: pakai wrap baru */}
+                  <SearchBox
+                    placeholder='Search Movie'
+                    fullWidth
+                    value={searchTerm}
+                    onChange={(val) => {
+                      setSearchTerm(val);
+                      if (val.trim()) open();
+                      else close();
+                    }}
+                    onFocus={() => {
+                      if (searchTerm.trim()) open();
+                    }}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </motion.header>
 
-      {/* Overlay Search */}
-      <div className={clsx(styles.searchOverlay, searchOpen && styles.open)}>
-        <div className={styles.searchHeader}>
-          <button
-            className={styles.backButton}
-            onClick={() => setSearchOpen(false)}
-            aria-label='Back'
-          >
-            <LeftArrowIcon />
-          </button>
-          <SearchBox placeholder='Search Movie' fullWidth />
-        </div>
-      </div>
+      {/* Search overlay (mobile) */}
+      {isMobile && (
+        <div className={clsx(styles.searchOverlay, searchOpen && styles.open)}>
+          <div className={styles.searchHeader}>
+            <button
+              className={styles.backButton}
+              onClick={close}
+              aria-label='Back'
+            >
+              <LeftArrowIcon />
+            </button>
 
-      {/* Overlay Menu (mobile) */}
+            <SearchBox
+              placeholder='Search Movie'
+              fullWidth
+              value={searchTerm}
+              onChange={(val) => {
+                setSearchTerm(val);
+                if (val.trim()) open();
+                else close();
+              }}
+              onFocus={() => {
+                if (searchTerm.trim()) open();
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Mobile menu overlay */}
       <div className={clsx(styles.mobileOverlay, menuOpen && styles.open)}>
         <div className={styles.overlayHeader}>
           <span className={styles.logoText}>cinemaze</span>
@@ -96,7 +178,6 @@ export const Header: React.FC = () => {
             <CloseIcon />
           </button>
         </div>
-
         <nav className={styles.navMobile}>
           <a href='/' onClick={() => setMenuOpen(false)}>
             Home

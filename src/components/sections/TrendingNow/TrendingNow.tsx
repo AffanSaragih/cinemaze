@@ -7,7 +7,7 @@ import type { Swiper as SwiperClass } from 'swiper/types';
 
 import styles from './TrendingNow.module.scss';
 import { CarouselArrow } from '@/components/ui/CarouselArrow';
-import { MovieCard } from '@/components/ui/MovieCard';
+import { MovieCardPreview } from '@/components/ui/MovieCardPreview';
 import { BaseMovie } from '@/types/movie';
 
 export const TrendingNow: React.FC<{ movies: BaseMovie[] }> = ({ movies }) => {
@@ -36,7 +36,6 @@ export const TrendingNow: React.FC<{ movies: BaseMovie[] }> = ({ movies }) => {
   return (
     <div className={`${styles.trendingSection} container`}>
       <h2>Trending Now</h2>
-
       <div className={styles.carouselWrapper}>
         <div ref={prevRef}>
           <CarouselArrow direction='left' />
@@ -72,7 +71,7 @@ export const TrendingNow: React.FC<{ movies: BaseMovie[] }> = ({ movies }) => {
         >
           {movies.map((movie, index) => (
             <SwiperSlide key={movie.id}>
-              <MovieCard {...movie} isTrending index={index} hideActions />
+              <MovieCardPreview {...movie} isTrending index={index} hideActions />
             </SwiperSlide>
           ))}
         </Swiper>

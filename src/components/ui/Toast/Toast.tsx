@@ -10,7 +10,7 @@ interface ToastProps {
 
 export const Toast: React.FC<ToastProps> = ({
   message,
-  duration = 2500,
+  duration = 2000,
   onClose,
 }) => {
   const [show, setShow] = useState(false);
