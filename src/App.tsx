@@ -1,3 +1,5 @@
+import '@/scss/globals.scss';
+import '@/styles/utils/_container.scss';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Routes, Route, useLocation } from 'react-router-dom';

@@ -34,8 +34,7 @@ export const SearchOverlayResults: React.FC = () => {
   const language = useMemo(
     () => (typeof navigator !== 'undefined' ? navigator.language : 'en-US'),
     []
-  ); 
-
+  );
 
   useEffect(() => {
     if (!isDesktop) return;

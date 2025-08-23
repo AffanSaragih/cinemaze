@@ -87,17 +87,17 @@ export const DetailCard: React.FC<MovieDetail> = ({
   ageLimit,
   casts = [],
 }) => {
-  const isFavorite = useFavoriteStore((s) => s.isFavorite(id));        // <-- Tambahan!
-  const addFavorite = useFavoriteStore((s) => s.addFavorite);          // <-- Tambahan!
-  const removeFavorite = useFavoriteStore((s) => s.removeFavorite);    // <-- Tambahan!
+  const isFavorite = useFavoriteStore((s) => s.isFavorite(id)); // <-- Tambahan!
+  const addFavorite = useFavoriteStore((s) => s.addFavorite); // <-- Tambahan!
+  const removeFavorite = useFavoriteStore((s) => s.removeFavorite); // <-- Tambahan!
 
   // State lokal lain (toast, loading, dll)
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-
-  const toggleFavorite = () => { // <-- Tambahan!
+  const toggleFavorite = () => {
+    // <-- Tambahan!
     if (isFavorite) {
       removeFavorite(id);
       setToastMessage('Removed from Favorites');

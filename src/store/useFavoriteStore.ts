@@ -27,7 +27,7 @@ export const useFavoriteStore = create<FavoriteState>()(
     }),
     {
       name: 'favorite-storage',
-      partialize: (state) => ({ favorites: state.favorites })
+      partialize: (state) => ({ favorites: state.favorites }),
     }
   )
 );

@@ -17,9 +17,7 @@ export const MovieList: React.FC<MovieListProps> = ({
 }) => {
   if (!movies || movies.length === 0) {
     return (
-      <div className={styles.emptyState}>
-        {emptyText || 'No movies found.'}
-      </div>
+      <div className={styles.emptyState}>{emptyText || 'No movies found.'}</div>
     );
   }
 

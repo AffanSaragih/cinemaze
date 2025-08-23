@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useDebounce } from "@/hooks/useDebounce";
-import { searchMovies } from "@/services/tmdb";
-import { normalizeMovie } from "@/utils/normalize/normalizeMovie";
-import type { BaseMovie } from "@/types/movie";
+import { useEffect, useState } from 'react';
+import { useDebounce } from '@/hooks/useDebounce';
+import { searchMovies } from '@/services/tmdb';
+import { normalizeMovie } from '@/utils/normalize/normalizeMovie';
+import type { BaseMovie } from '@/types/movie';
 
 type Options = {
   debounceMs?: number;
@@ -15,7 +15,7 @@ type Options = {
 export function useSearchMovies(term: string, options: Options = {}) {
   const {
     debounceMs = 300,
-    language = "en-US",
+    language = 'en-US',
     includeAdult = false,
     page = 1,
   } = options;

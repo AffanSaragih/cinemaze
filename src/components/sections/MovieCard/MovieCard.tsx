@@ -45,7 +45,7 @@ export const MovieCard: React.FC<BaseMovie> = ({
 
   const handleToggleFavorite = (e: React.MouseEvent) => {
     e.stopPropagation();
-    console.log('Favoriting', id)
+    console.log('Favoriting', id);
     if (isFavorite(id)) {
       removeFavorite(id);
       showToast('Removed from Favorites', 1500);
@@ -126,5 +126,3 @@ export const MovieCard: React.FC<BaseMovie> = ({
     </div>
   );
 };
-
-

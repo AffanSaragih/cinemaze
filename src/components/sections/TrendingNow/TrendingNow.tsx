@@ -71,7 +71,12 @@ export const TrendingNow: React.FC<{ movies: BaseMovie[] }> = ({ movies }) => {
         >
           {movies.map((movie, index) => (
             <SwiperSlide key={movie.id}>
-              <MovieCardPreview {...movie} isTrending index={index} hideActions />
+              <MovieCardPreview
+                {...movie}
+                isTrending
+                index={index}
+                hideActions
+              />
             </SwiperSlide>
           ))}
         </Swiper>

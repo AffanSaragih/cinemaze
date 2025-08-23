@@ -5,7 +5,10 @@ interface UseScrollRevealOptions {
   threshold?: number;
 }
 
-export const useScrollReveal = ({ once = true, threshold = 0.1 }: UseScrollRevealOptions = {}) => {
+export const useScrollReveal = ({
+  once = true,
+  threshold = 0.1,
+}: UseScrollRevealOptions = {}) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 

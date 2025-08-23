@@ -1,20 +1,18 @@
-@use "@/scss/_shared" as *;
-
-@use "sass:map";
-@use "sass:list";
-@use "sass:meta";
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:meta';
 
 $breakpoints: (
-  "sm": 640px,
-  "md": 768px,
-  "lg": 1024px,
-  "xl": 1280px,
-  "2xl": 1536px,
+  'sm': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  '2xl': 1536px,
 );
 
 // Ambil nilai breakpoint dari key atau langsung return jika sudah number.
 @function bp($name-or-value) {
-  @if meta.type-of($name-or-value) == "number" {
+  @if meta.type-of($name-or-value) == 'number' {
     @return $name-or-value;
   }
   @if map.has-key($breakpoints, $name-or-value) {
@@ -26,23 +24,70 @@ $breakpoints: (
 @function _next-bp($name) {
   $keys: map.keys($breakpoints);
   $idx: list.index($keys, $name);
-  @if $idx == null { @return null; }
-  @if $idx == list.length($keys) { @return null; }
+  @if $idx == null {
+    @return null;
+  }
+  @if $idx == list.length($keys) {
+    @return null;
+  }
   @return map.get($breakpoints, list.nth($keys, $idx + 1));
 }
 
-@mixin up($name-or-value)      { @media (min-width: bp($name-or-value)) { @content; } }
-@mixin down($name-or-value)    { $max: bp($name-or-value) - 0.02px; @media (max-width: $max) { @content; } }
-@mixin between($min, $max)     { $minv: bp($min); $maxv: bp($max) - 0.02px; @media (min-width: $minv) and (max-width: $maxv) { @content; } }
+@mixin up($name-or-value) {
+  @media (min-width: bp($name-or-value)) {
+    @content;
+  }
+}
+@mixin down($name-or-value) {
+  $max: bp($name-or-value) - 0.02px;
+  @media (max-width: $max) {
+    @content;
+  }
+}
+@mixin between($min, $max) {
+  $minv: bp($min);
+  $maxv: bp($max) - 0.02px;
+  @media (min-width: $minv) and (max-width: $maxv) {
+    @content;
+  }
+}
 @mixin only($name) {
   $minv: bp($name);
   $next: _next-bp($name);
-  @if $next == null { @include up($name) { @content; } }
-  @else { $maxv: $next - 0.02px; @media (min-width: $minv) and (max-width: $maxv) { @content; } }
+  @if $next == null {
+    @include up($name) {
+      @content;
+    }
+  } @else {
+    $maxv: $next - 0.02px;
+    @media (min-width: $minv) and (max-width: $maxv) {
+      @content;
+    }
+  }
 }
-@mixin cq-up($name-or-value)   { @container (min-width: bp($name-or-value)) { @content; } }
+@mixin cq-up($name-or-value) {
+  @container (min-width: bp($name-or-value)) {
+    @content;
+  }
+}
 
-@mixin sm { @include up("sm") { @content; } }
-@mixin md { @include up("md") { @content; } }
-@mixin lg { @include up("lg") { @content; } }
-@mixin xl { @include up("xl") { @content; } }
+@mixin sm {
+  @include up('sm') {
+    @content;
+  }
+}
+@mixin md {
+  @include up('md') {
+    @content;
+  }
+}
+@mixin lg {
+  @include up('lg') {
+    @content;
+  }
+}
+@mixin xl {
+  @include up('xl') {
+    @content;
+  }
+}

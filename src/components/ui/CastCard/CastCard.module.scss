@@ -1,5 +1,4 @@
-@use "@/scss/_shared" as *;
-
+@use '@/scss/_shared' as *;
 
 .card {
   display: flex;
@@ -20,7 +19,7 @@
     overflow: hidden;
     flex-shrink: 0;
     position: relative;
-  
+
     @include md {
       width: rem-calc(69);
       height: rem-calc(104);
@@ -39,26 +38,26 @@
     flex-direction: column;
     width: 100%;
     gap: rem-calc(4);
-  
+
     @include md {
       width: rem-calc(251);
       height: rem-calc(64);
       gap: rem-calc(8);
     }
-  
+
     h4 {
       @include typography('text-sm', 'semibold');
       color: get-color('neutral', 25);
-  
+
       @include md {
         @include typography('text-md', 'semibold');
       }
     }
-    
+
     p {
       @include typography('text-sm', 'regular');
       color: get-color('neutral', 400);
-  
+
       @include md {
         @include typography('text-md', 'regular');
       }

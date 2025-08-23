@@ -16,7 +16,7 @@ export const CarouselArrow: React.FC<CarouselArrowProps> = ({
 
   return (
     <button
-      type="button"
+      type='button'
       aria-label={direction === 'left' ? 'Previous' : 'Next'}
       onClick={onClick}
       className={clsx(styles.arrowButton, styles[direction])}

@@ -1,4 +1,4 @@
-import { BaseMovie } from "@/types/movie";
+import { BaseMovie } from '@/types/movie';
 
 export function removeDuplicateMovies<T extends BaseMovie>(movies: T[]): T[] {
   const seen = new Set();

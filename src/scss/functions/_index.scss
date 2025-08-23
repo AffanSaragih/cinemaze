@@ -1,6 +1,4 @@
-@use "@/scss/_shared" as *;
-
-@forward "./rem-calc";
-@forward "./get-spacing";
-@forward "./get-color";
-@forward "./get-radius";
+@forward './rem-calc';
+@forward './get-spacing';
+@forward './get-color';
+@forward './get-radius';

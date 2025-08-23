@@ -1,1 +1,1 @@
-export { TrendingNow } from "./TrendingNow";
+export { TrendingNow } from './TrendingNow';

@@ -21,9 +21,13 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const isYoutubeTrailer = (video: TmdbVideo) =>
   video.site === 'YouTube' && video.type === 'Trailer';
 
-export const fetchTrailerKey = async (movieId: number): Promise<string | null> => {
+export const fetchTrailerKey = async (
+  movieId: number
+): Promise<string | null> => {
   try {
-    const response = await fetch(`${TMDB_API_BASE}/movie/${movieId}/videos?api_key=${API_KEY}`);
+    const response = await fetch(
+      `${TMDB_API_BASE}/movie/${movieId}/videos?api_key=${API_KEY}`
+    );
 
     if (!response.ok) throw new Error('Failed to fetch trailer data');
 

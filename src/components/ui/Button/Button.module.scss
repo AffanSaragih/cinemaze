@@ -1,5 +1,4 @@
-@use "@/scss/_shared" as *;
-
+@use '@/scss/_shared' as *;
 
 .button {
   display: flex;
@@ -18,7 +17,9 @@
   @include typography('text-sm', 'semibold');
 
   cursor: pointer;
-  transition: filter 0.3s ease, transform 0.1s ease;
+  transition:
+    filter 0.3s ease,
+    transform 0.1s ease;
 
   &:hover {
     filter: brightness(1.5);

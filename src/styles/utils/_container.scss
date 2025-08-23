@@ -1,17 +1,14 @@
-@use "@/scss/_shared" as *;
+@use '@/scss/_shared' as *;
 
 @use '@/scss/_shared' as *;
 .container {
-  width: 100%;
-  max-width: rem-calc(1200);
+  /* mobile */
+  width: min(1120px, 100% - 2rem); /* 100% minus 32px */
   margin-inline: auto;
-  padding-inline: rem-calc(16);
+  padding-inline: 1rem; /* 16px */
 
-  @include md {
-    padding-inline: rem-calc(40);
-  }
-
-  @include xl {
-    padding-inline: rem-calc(60);
+  @media (min-width: 768px) {
+    width: min(1120px, 100% - 4rem); /* 100% minus 64px */
+    padding-inline: 1.5rem; /* 24px */
   }
 }

@@ -1,7 +1,5 @@
-@use "@/scss/_shared" as *;
-
-@use "sass:map";
-@use "../variables/radius" as *;
+@use 'sass:map';
+@use '../variables/radius' as *;
 
 @function get-radius($name) {
   @return map.get($radius, $name);

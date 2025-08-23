@@ -29,21 +29,21 @@ export const Empty: React.FC<EmptyProps> = ({
   };
 
   return (
-  <div className={styles.emptyStateWrapper}>
-    <div className={styles.emptyStateContent}>
-      <div className={styles.emptyStateVisual}>
-        <EmptyIcon className={styles.emptyStateIcon} />
-        <div className={styles.emptyStateText}>
-          <div className={styles.emptyStateTitle}>{title}</div>
-          <div className={styles.emptyStateSubtitle}>{subtitle}</div>
+    <div className={styles.emptyStateWrapper}>
+      <div className={styles.emptyStateContent}>
+        <div className={styles.emptyStateVisual}>
+          <EmptyIcon className={styles.emptyStateIcon} />
+          <div className={styles.emptyStateText}>
+            <div className={styles.emptyStateTitle}>{title}</div>
+            <div className={styles.emptyStateSubtitle}>{subtitle}</div>
+          </div>
         </div>
+        {showCTA && (
+          <div className={styles.emptyStateAction}>
+            <Button onClick={handleExploreClick}>{ctaText}</Button>
+          </div>
+        )}
       </div>
-      {showCTA && (
-        <div className={styles.emptyStateAction}>
-          <Button onClick={handleExploreClick}>{ctaText}</Button>
-        </div>
-      )}
     </div>
-  </div>
-);
+  );
 };

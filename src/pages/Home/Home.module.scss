@@ -1,10 +1,11 @@
-@use "@/scss/_shared" as *;
+@use '@/scss/_shared' as *;
 
-  
 .reveal-trending {
   opacity: 0;
   transform: translateY(100px);
-  transition: opacity 0.6s, transform 0.6s;
+  transition:
+    opacity 0.6s,
+    transform 0.6s;
 }
 .reveal-trending.visible {
   opacity: 1;

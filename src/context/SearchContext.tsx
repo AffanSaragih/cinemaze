@@ -12,7 +12,9 @@ export type SearchContextType = {
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
-export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -21,11 +23,18 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const clearSearch = () => {
     setSearchTerm('');
     setSearchOpen(false);
-  }
+  };
 
   return (
     <SearchContext.Provider
-      value={{ searchTerm, setSearchTerm, searchOpen, openSearch, closeSearch, clearSearch }}
+      value={{
+        searchTerm,
+        setSearchTerm,
+        searchOpen,
+        openSearch,
+        closeSearch,
+        clearSearch,
+      }}
     >
       {children}
     </SearchContext.Provider>

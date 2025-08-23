@@ -1,6 +1,4 @@
-@use "@/scss/_shared" as *;
-
-
+@use '@/scss/_shared' as *;
 
 .footer {
   width: 100%;
@@ -8,7 +6,6 @@
   justify-content: center;
   background: transparent;
   padding: 0 0 rem-calc(32) 0;
-  
 
   .socialRow {
     display: flex;

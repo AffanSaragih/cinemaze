@@ -26,13 +26,8 @@ export const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const {
-    searchTerm,
-    setSearchTerm,
-    searchOpen,
-    openSearch,
-    closeSearch,
-  } = useSearch();
+  const { searchTerm, setSearchTerm, searchOpen, openSearch, closeSearch } =
+    useSearch();
 
   const isMobile = useIsMobile();
   const open = openSearch ?? (() => {});
@@ -116,7 +111,8 @@ export const Header: React.FC = () => {
             {/* Desktop SearchBox (kanan atas) */}
             {!isMobile && (
               <div className={styles.search}>
-                <div className={styles.searchDesktopWrap}>{/* CHANGED: pakai wrap baru */}
+                <div className={styles.searchDesktopWrap}>
+                  {/* CHANGED: pakai wrap baru */}
                   <SearchBox
                     placeholder='Search Movie'
                     fullWidth

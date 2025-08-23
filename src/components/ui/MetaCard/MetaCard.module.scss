@@ -1,5 +1,4 @@
-@use "@/scss/_shared" as *;
-
+@use '@/scss/_shared' as *;
 
 .card {
   border-radius: get-radius('radius-2xl');
@@ -25,7 +24,7 @@
     svg {
       width: rem-calc(24);
       height: rem-calc(24);
-      
+
       @include md {
         width: rem-calc(32);
         height: rem-calc(32);

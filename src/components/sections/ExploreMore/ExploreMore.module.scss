@@ -1,34 +1,15 @@
-@use "@/scss/_shared" as *;
-
-@use "sass:color";
-
-.newReleaseSection :global(.container) {
-  display: block;
-  max-width: rem-calc(1210);
-  width: 100%;
-  padding-left: rem-calc(16);
-  padding-right: rem-calc(16);
-
-  @include md {
-    padding-left: rem-calc(24);
-    padding-right: rem-calc(24);
-  }
-
-  h2 {
-    @include typography('display-xs', 'bold');
-    color: get-color('neutral', 25);
-
-    @include md {
-      @include typography('display-lg', 'bold');
-    }
-  }
-}
+@use '@/scss/_shared' as *;
+@use 'sass:color';
 
 .exploreMoreTitle {
-  padding-top: get-spacing('spacing-1xl');
+  @include typography('display-xs', 'bold');
+  color: get-color('neutral', 25);
+  margin: 0; /* reset default <h2> */
+  padding-top: get-spacing('spacing-xl'); /* was spacing-1xl (tidak ada) */
   padding-bottom: get-spacing('spacing-3xl');
 
   @include md {
+    @include typography('display-lg', 'bold');
     padding-top: get-spacing('spacing-5xl');
     padding-bottom: get-spacing('spacing-6xl');
   }
@@ -42,7 +23,6 @@
   justify-items: stretch;
   align-items: stretch;
 
-  /* keep a single gap declaration */
   gap: rem-calc(16);
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
@@ -65,9 +45,10 @@
 
   .button {
     width: rem-calc(200);
-
-    /* ⬇️ Deklarasi dipindah ke atas nested rule untuk hilangkan mixed-decls warning */
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    transition:
+      background 0.2s,
+      color 0.2s,
+      box-shadow 0.2s;
 
     @include md {
       width: rem-calc(230);
@@ -82,7 +63,6 @@
     }
 
     &:active {
-      /* darken(#e41d02, 10%) → color.adjust */
       background: color.adjust(#e41d02, $lightness: -10%);
     }
   }

@@ -1,5 +1,4 @@
-@use "@/scss/_shared" as *;
-
+@use '@/scss/_shared' as *;
 
 .overlay {
   position: fixed;
@@ -30,7 +29,10 @@
     padding: 0 rem-calc(140) rem-calc(80) rem-calc(140);
     background-color: rgba(10, 13, 18, 0.8);
     backdrop-filter: blur(10px);
-    transition: background-color 0.3s, backdrop-filter 0.3s, padding 0.3s,
+    transition:
+      background-color 0.3s,
+      backdrop-filter 0.3s,
+      padding 0.3s,
       box-shadow 0.3s;
   }
 }
@@ -41,7 +43,6 @@
   gap: rem-calc(32);
   width: 100%;
 
-  // Agar MovieList melebarkan diri sesuai container
   > * {
     width: 100%;
   }

@@ -1,6 +1,4 @@
-@use "@/scss/_shared" as *;
-
-
+@use '@/scss/_shared' as *;
 
 .gridWrapper {
   position: relative;
@@ -26,7 +24,7 @@
   gap: rem-calc(20);
 
   @include md {
-    gap: rem-calc(32)
+    gap: rem-calc(32);
   }
 
   & > * {

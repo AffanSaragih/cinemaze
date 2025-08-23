@@ -1,10 +1,8 @@
-@use "@/scss/_shared" as *;
-
-@use "sass:map";
-@use "../variables/spacing" as *;
+@use 'sass:map';
+@use '../variables/spacing' as *;
 
 /// Ambil nilai spacing dari $spacing map.
-/// Usage: margin: get-spacing('md'); 
+/// Usage: margin: get-spacing('md');
 ///        padding: get-spacing('xxl', 2rem); // fallback jika key tidak ada
 @function get-spacing($name, $fallback: null) {
   @if map.has-key($spacing, $name) {

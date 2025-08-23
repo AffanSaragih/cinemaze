@@ -1,8 +1,6 @@
-@use "@/scss/_shared" as *;
-
-@use "sass:map";
-@use "../variables/fonts" as *;
-@use "../functions/rem-calc" as *;
+@use 'sass:map';
+@use '../variables/fonts' as *;
+@use '../functions/rem-calc' as *;
 
 $sizes: (
   'display-3xl': (
@@ -65,7 +63,7 @@ $weights: (
   'extrabold': 800,
 );
 
-/// Usage: @include typography('text-md', 'semibold'); 
+/// Usage: @include typography('text-md', 'semibold');
 ///        @include typography('display-lg'); // default weight: regular
 @mixin typography($size, $weight: 'regular', $font-family: $font-family-base) {
   @if map.has-key($sizes, $size) and map.has-key($weights, $weight) {

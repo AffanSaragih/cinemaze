@@ -19,13 +19,13 @@ export const Toast: React.FC<ToastProps> = ({
   useEffect(() => {
     setTimeout(() => {
       setShow(true);
-    }, 10); 
+    }, 10);
     const fadeTimer = setTimeout(() => {
-      setFadeOut(true); 
+      setFadeOut(true);
     }, duration);
 
     const removeTimer = setTimeout(() => {
-      onClose(); 
+      onClose();
     }, duration + 500);
 
     return () => {

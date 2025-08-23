@@ -62,8 +62,8 @@ export const Home: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="center-loader">
-        <LoadingAnimation text="Loading Content..." onlyText={true} />
+      <div className='center-loader'>
+        <LoadingAnimation text='Loading Content...' onlyText={true} />
       </div>
     );
   }

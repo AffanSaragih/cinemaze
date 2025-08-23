@@ -1,6 +1,7 @@
 // src/services/tmdb.ts
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-const BASE_URL = import.meta.env.VITE_TMDB_BASE_URL || 'https://api.themoviedb.org/3';
+const BASE_URL =
+  import.meta.env.VITE_TMDB_BASE_URL || 'https://api.themoviedb.org/3';
 
 const fetchFromTMDB = async (
   endpoint: string,
@@ -25,11 +26,14 @@ export const getTrendingMovies = () => {
 };
 
 /** 🔎 PENCARIAN FILM */
-export const searchMovies = (q: string, opts?: {
-  page?: number;
-  include_adult?: boolean;
-  language?: string; // contoh: 'en-US' | 'id-ID'
-}) => {
+export const searchMovies = (
+  q: string,
+  opts?: {
+    page?: number;
+    include_adult?: boolean;
+    language?: string; // contoh: 'en-US' | 'id-ID'
+  }
+) => {
   return fetchFromTMDB('/search/movie', {
     query: q,
     page: String(opts?.page ?? 1),
