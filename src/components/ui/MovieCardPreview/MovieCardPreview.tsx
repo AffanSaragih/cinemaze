@@ -6,7 +6,6 @@ import styles from './MovieCardPreview.module.scss';
 import StarIcon from '@/assets/Star.svg';
 import { BaseMovie } from '@/types/movie';
 
-// Tipe prop untuk komponen utama
 interface MovieCardPreviewProps extends BaseMovie {
   isDisabled?: boolean;
   trailerKey?: string;
@@ -14,7 +13,6 @@ interface MovieCardPreviewProps extends BaseMovie {
   className?: string;
 }
 
-// Tipe prop untuk CardContent (harus dipisah)
 type CardContentProps = {
   title: string;
   imgSrc: string;
@@ -34,7 +32,6 @@ const hoverVariants = {
   },
 };
 
-// CardContent sudah aman menerima className
 const CardContent: React.FC<CardContentProps> = memo(
   ({
     title,

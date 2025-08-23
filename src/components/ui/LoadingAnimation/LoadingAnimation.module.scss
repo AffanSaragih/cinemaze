@@ -55,7 +55,6 @@
   }
 }
 
-// Spin animasi
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -65,7 +64,6 @@
   }
 }
 
-// Blink animasi gelombang (dari kiri ke kanan)
 @keyframes blink-wave {
   0% {
     opacity: 0.2;
@@ -81,7 +79,6 @@
   }
 }
 
-// Animasi Blinking
 @keyframes blink {
   0% {
     opacity: 0.2;

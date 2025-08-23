@@ -87,17 +87,15 @@ export const DetailCard: React.FC<MovieDetail> = ({
   ageLimit,
   casts = [],
 }) => {
-  const isFavorite = useFavoriteStore((s) => s.isFavorite(id)); // <-- Tambahan!
-  const addFavorite = useFavoriteStore((s) => s.addFavorite); // <-- Tambahan!
-  const removeFavorite = useFavoriteStore((s) => s.removeFavorite); // <-- Tambahan!
+  const isFavorite = useFavoriteStore((s) => s.isFavorite(id));
+  const addFavorite = useFavoriteStore((s) => s.addFavorite);
+  const removeFavorite = useFavoriteStore((s) => s.removeFavorite);
 
-  // State lokal lain (toast, loading, dll)
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const toggleFavorite = () => {
-    // <-- Tambahan!
     if (isFavorite) {
       removeFavorite(id);
       setToastMessage('Removed from Favorites');
@@ -128,8 +126,11 @@ export const DetailCard: React.FC<MovieDetail> = ({
   };
 
   return (
-    <div className={styles.detailContainer}>
-      {backdropUrl && (
+    <div
+      className={styles.detailContainer}
+      style={{ ['--hero-h' as any]: '80vh' }}
+    >
+      {!!backdropUrl && (
         <div
           className={styles.background}
           style={{ backgroundImage: `url(${backdropUrl})` }}
@@ -143,24 +144,13 @@ export const DetailCard: React.FC<MovieDetail> = ({
         </div>
       )}
 
-      <div className={styles.detailCard}>
-        {/* Top Section */}
-        <div className={styles.top}>
-          <img src={poster} alt={title} className={styles.poster} />
+      <div className={clsx('container', styles.body)}>
+        <div className={styles.detailCard}>
+          {/* Top Section */}
+          <div className={styles.top}>
+            <img src={poster} alt={title} className={styles.poster} />
 
-          {/* Mobile Info */}
-          <div className={styles.info}>
-            <h3 className={styles.title}>{title}</h3>
-            <div className={styles.date}>
-              <CalendarIcon className={styles.icon} />
-              {releaseDate
-                ? formatDateToIndoLong(releaseDate)
-                : 'Tanggal tidak tersedia'}
-            </div>
-          </div>
-
-          {/* Desktop Info */}
-          <div className={styles.cardContent}>
+            {/* Mobile Info */}
             <div className={styles.info}>
               <h3 className={styles.title}>{title}</h3>
               <div className={styles.date}>
@@ -171,54 +161,75 @@ export const DetailCard: React.FC<MovieDetail> = ({
               </div>
             </div>
 
-            {/* Desktop CTA */}
-            <CTAButtons
-              isFavorite={isFavorite}
-              toggleFavorite={toggleFavorite}
-              handleWatchTrailer={handleWatchTrailer}
-              isLoading={isLoading}
-            />
+            {/* Desktop Info */}
+            <div className={styles.cardContent}>
+              <div className={styles.info}>
+                <h3 className={styles.title}>{title}</h3>
+                <div className={styles.date}>
+                  <CalendarIcon className={styles.icon} />
+                  {releaseDate
+                    ? formatDateToIndoLong(releaseDate)
+                    : 'Tanggal tidak tersedia'}
+                </div>
+              </div>
 
-            {/* Desktop MetaCards */}
-            <MetaCardsGroup rating={rating} genre={genre} ageLimit={ageLimit} />
+              {/* Desktop CTA */}
+              <CTAButtons
+                isFavorite={isFavorite}
+                toggleFavorite={toggleFavorite}
+                handleWatchTrailer={handleWatchTrailer}
+                isLoading={isLoading}
+              />
+
+              {/* Desktop MetaCards */}
+              <MetaCardsGroup
+                rating={rating}
+                genre={genre}
+                ageLimit={ageLimit}
+              />
+            </div>
           </div>
+
+          {/* Mobile CTA */}
+          <CTAButtons
+            isFavorite={isFavorite}
+            toggleFavorite={toggleFavorite}
+            handleWatchTrailer={handleWatchTrailer}
+            isLoading={isLoading}
+          />
+
+          {/* Mobile MetaCards */}
+          <MetaCardsGroup rating={rating} genre={genre} ageLimit={ageLimit} />
+
+          {/* Toast */}
+          {showToast && (
+            <Toast message={toastMessage} onClose={() => setShowToast(false)} />
+          )}
         </div>
-
-        {/* Mobile CTA */}
-        <CTAButtons
-          isFavorite={isFavorite}
-          toggleFavorite={toggleFavorite}
-          handleWatchTrailer={handleWatchTrailer}
-          isLoading={isLoading}
-        />
-
-        {/* Mobile MetaCards */}
-        <MetaCardsGroup rating={rating} genre={genre} ageLimit={ageLimit} />
-
-        {/* Toast */}
-        {showToast && (
-          <Toast message={toastMessage} onClose={() => setShowToast(false)} />
-        )}
       </div>
 
       {/* Overview */}
-      <div className={styles.overview}>
-        <h2 className={styles.overviewTitle}>Overview</h2>
-        <p className={styles.overviewText}>{overview}</p>
+      <div className='container'>
+        <div className={styles.overview}>
+          <h2 className={styles.overviewTitle}>Overview</h2>
+          <p className={styles.overviewText}>{overview}</p>
+        </div>
       </div>
 
       {/* Cast & Crew */}
-      <div className={styles.castAndCrew}>
-        <h2 className={styles.castsAndCrews}>Cast & Crew</h2>
-        <div className={styles.casters}>
-          {casts.map((cast) => (
-            <CastCard
-              key={cast.id}
-              image={cast.profileUrl}
-              name={cast.name}
-              character={cast.character}
-            />
-          ))}
+      <div className='container'>
+        <div className={styles.castAndCrew}>
+          <h2 className={styles.castsAndCrews}>Cast & Crew</h2>
+          <div className={styles.casters}>
+            {casts.map((cast) => (
+              <CastCard
+                key={cast.id}
+                image={cast.profileUrl}
+                name={cast.name}
+                character={cast.character}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

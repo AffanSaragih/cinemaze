@@ -3,7 +3,7 @@ import React from 'react';
 interface HeartIconProps {
   filled?: boolean;
   size?: number;
-  className?: string; // ← tambahkan
+  className?: string;
 }
 
 export const HeartIcon: React.FC<HeartIconProps> = ({
@@ -12,7 +12,7 @@ export const HeartIcon: React.FC<HeartIconProps> = ({
   className,
 }) => (
   <svg
-    className={className} // ← pasang className
+    className={className}
     xmlns='http://www.w3.org/2000/svg'
     width={size}
     height={size}

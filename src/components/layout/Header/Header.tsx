@@ -10,9 +10,8 @@ import LeftArrowIcon from '@/assets/LeftArrow.svg';
 import MenuIcon from '@/assets/HamburgerMenu.svg';
 import SearchIcon from '@/assets/Search.svg';
 
-// CHANGED: SSR-safe init (hindari akses window saat init)
 const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(false); // CHANGED
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
@@ -112,7 +111,6 @@ export const Header: React.FC = () => {
             {!isMobile && (
               <div className={styles.search}>
                 <div className={styles.searchDesktopWrap}>
-                  {/* CHANGED: pakai wrap baru */}
                   <SearchBox
                     placeholder='Search Movie'
                     fullWidth

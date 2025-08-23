@@ -16,8 +16,8 @@ export const ScrollRevealItem: React.FC<ScrollRevealItemProps> = ({
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
-    once: false, // penting: agar bisa animasi ulang
-    amount: 0.2, // 20% masuk viewport langsung animasi
+    once: false,
+    amount: 0.2,
   });
 
   return (

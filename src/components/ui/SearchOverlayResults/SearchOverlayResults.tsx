@@ -30,7 +30,6 @@ export const SearchOverlayResults: React.FC = () => {
 
   const query = debounced.trim();
 
-  // CHANGED: SSR-safe navigator
   const language = useMemo(
     () => (typeof navigator !== 'undefined' ? navigator.language : 'en-US'),
     []
@@ -83,7 +82,7 @@ export const SearchOverlayResults: React.FC = () => {
 
     run();
     return () => controller.abort();
-  }, [query, searchOpen, language]); // ⬅️ perhatikan: isDesktop DIHAPUS dari deps
+  }, [query, searchOpen, language]);
 
   const onKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -112,7 +111,7 @@ export const SearchOverlayResults: React.FC = () => {
           onClick={(e) => {
             if (e.target === e.currentTarget) closeSearch();
           }}
-          tabIndex={-1} // CHANGED: agar bisa menerima keydown/Escape
+          tabIndex={-1}
         >
           <div className='container'>
             <div className={styles.results}>

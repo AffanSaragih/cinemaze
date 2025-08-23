@@ -49,7 +49,6 @@
   }
 }
 
-/* ✅ Navigation only visible on desktop */
 .nav {
   display: none;
 
@@ -84,7 +83,6 @@
   }
 }
 
-/* ✅ SearchBox only visible on desktop */
 .search {
   display: none;
 
@@ -130,7 +128,6 @@
   }
 }
 
-/* ✅ Search Overlay (mobile) */
 .searchOverlay {
   position: fixed;
   top: 0;
@@ -187,7 +184,6 @@
   }
 }
 
-/* ✅ Mobile Menu Overlay */
 .mobileOverlay {
   position: fixed;
   top: 0;

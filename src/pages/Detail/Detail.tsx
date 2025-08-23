@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
 import { DetailCard } from '@/components/ui/DetailCard';
 import { fetchMovieDetail, fetchMovieCasts } from '@/services/detailApi';
-import { BaseMovie, Cast } from '@/types/movie';
+import type { BaseMovie, Cast } from '@/types/movie';
+import styles from './Detail.module.scss';
 
 export const Detail = () => {
   const { id } = useParams<{ id: string }>();
@@ -13,28 +12,25 @@ export const Detail = () => {
 
   useEffect(() => {
     if (!id) return;
-    const fetchData = async () => {
+    (async () => {
       const movieData = await fetchMovieDetail(Number(id));
       const castData = await fetchMovieCasts(Number(id));
       setMovie(movieData);
       setCasts(castData);
-    };
-    fetchData();
+    })();
   }, [id]);
 
   useEffect(() => {
-    if (movie?.id) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    if (movie?.id) window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [movie?.id]);
 
   if (!movie) return <div>Loading...</div>;
 
   return (
-    <div>
-      <Header />
-      <DetailCard {...movie} casts={casts} />
-      <Footer />
-    </div>
+    <section className={styles.detailPage}>
+      <div className='container'>
+        <DetailCard {...movie} casts={casts} />
+      </div>
+    </section>
   );
 };

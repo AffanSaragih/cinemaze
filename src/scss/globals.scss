@@ -1,10 +1,10 @@
 /* src/scss/globals.scss */
-@use '@/scss/_shared' as *; // 1x hub untuk tokens, functions, mixins
-@use './base/index' as *; // CSS-emitting base (reset/normalize/fonts/general)
+@use '@/scss/_shared' as *;
+@use './base/index' as *;
 
-/* ---- App-wide variables & background ---- */
 :root {
-  --app-bg: #000; /* sesuaikan tema kamu */
+  --header-height: 64px;
+  --app-bg: #000;
   --font-sans:
     'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
 }
@@ -21,14 +21,12 @@ body {
 
 body {
   background: var(--app-bg);
-  /* optional: warna teks default */
-  /* color: get-color('neutral', 25); */
 }
 
 /* wrapper utama app */
 .app-root {
   min-height: 100%;
-  background: inherit; /* ikut body, biar tidak putih */
+  background: inherit;
   display: flex;
   flex-direction: column;
 }

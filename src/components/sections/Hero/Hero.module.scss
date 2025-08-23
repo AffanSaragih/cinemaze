@@ -50,8 +50,6 @@
   }
 
   .content {
-    /* ⛔️ Hapus @extend .container; */
-    /* ✅ Container style lokal (aman untuk CSS Modules) */
     width: min(1120px, 100% - rem-calc(32));
     margin-inline: auto;
     padding-inline: rem-calc(16);

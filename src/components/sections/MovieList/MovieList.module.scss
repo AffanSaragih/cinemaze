@@ -11,13 +11,11 @@
     gap: rem-calc(40) get-spacing('spacing-2xl');
   }
 
-  // Stretch biar card sama lebar
   & > * {
     justify-self: stretch;
   }
 }
 
-// ===== Tambahkan ini untuk list/vertical mode =====
 .listWrapper {
   display: flex;
   flex-direction: column;
@@ -29,8 +27,6 @@
 
   & > * {
     width: 100%;
-    // border-bottom: 1px solid get-color('neutral', 700); // Opsional, kasih pemisah
-    // padding-bottom: rem-calc(16);
   }
 }
 

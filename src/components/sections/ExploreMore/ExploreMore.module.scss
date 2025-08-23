@@ -4,8 +4,8 @@
 .exploreMoreTitle {
   @include typography('display-xs', 'bold');
   color: get-color('neutral', 25);
-  margin: 0; /* reset default <h2> */
-  padding-top: get-spacing('spacing-xl'); /* was spacing-1xl (tidak ada) */
+  margin: 0;
+  padding-top: get-spacing('spacing-xl');
   padding-bottom: get-spacing('spacing-3xl');
 
   @include md {
