@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { DetailCard } from '@/components/ui/DetailCard';
 import { fetchMovieDetail, fetchMovieCasts } from '@/services/detailApi';
-import type { BaseMovie, Cast } from '@/types/movie';
+import type { MovieDetail, Cast } from '@/types/movie';
 import styles from './Detail.module.scss';
 
 export const Detail = () => {
   const { id } = useParams<{ id: string }>();
-  const [movie, setMovie] = useState<BaseMovie | null>(null);
+  const [movie, setMovie] = useState<MovieDetail | null>(null);
   const [casts, setCasts] = useState<Cast[]>([]);
 
   useEffect(() => {

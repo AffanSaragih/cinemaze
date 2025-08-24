@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
-import ArrowIcon from '@/assets/ArrowUp.svg';
+import ArrowIcon from '@/assets/ArrowUp.svg?react';
 import styles from './ScrollButton.module.scss';
 
 interface ScrollButtonProps {

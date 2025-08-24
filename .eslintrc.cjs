@@ -1,3 +1,4 @@
+// .eslintrc.cjs
 module.exports = {
   root: true,
   env: {
@@ -14,18 +15,24 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react-refresh'],
+  plugins: ['@typescript-eslint', 'react-refresh', 'import'],
   settings: {
+    // >>> penting: pakai resolver typescript agar alias @ dan tsconfig terbaca
     'import/resolver': {
-      alias: {
-        map: [['@', './src']],
-        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.svg'],
+      typescript: {
+        // tsconfig yang dipakai project
+        project: ['./tsconfig.app.json', './tsconfig.json'],
+      },
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.d.ts'],
       },
     },
+    react: { version: 'detect' },
   },
   rules: {
     'react/react-in-jsx-scope': 'off',
-    'import/no-unresolved': 'error',
+    // >>> abaikan import dengan suffix ?react (SVG component via svgr)
+    'import/no-unresolved': ['error', { ignore: ['\\?react$'] }],
     'comma-dangle': 'off',
     semi: 'off',
     'react-refresh/only-export-components': [

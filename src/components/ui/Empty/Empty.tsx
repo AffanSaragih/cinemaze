@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Empty.module.scss';
 import { Button } from '@/components/ui/Button/Button';
-import EmptyIcon from '@/assets/emptyIcon.svg';
+import EmptyIcon from '@/assets/emptyIcon.svg?react';
 import { useNavigate } from 'react-router-dom';
 
 interface EmptyProps {

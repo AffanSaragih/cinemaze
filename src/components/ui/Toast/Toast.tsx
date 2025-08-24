@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Toast.module.scss';
-import ChecklistIcon from '@/assets/Checklist.svg';
+import ChecklistIcon from '@/assets/Checklist.svg?react';
 
 interface ToastProps {
   message: string;

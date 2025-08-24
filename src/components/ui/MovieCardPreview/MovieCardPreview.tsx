@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import clsx from 'clsx';
 import styles from './MovieCardPreview.module.scss';
-import StarIcon from '@/assets/Star.svg';
+import StarIcon from '@/assets/Star.svg?react';
 import { BaseMovie } from '@/types/movie';
 
 interface MovieCardPreviewProps extends BaseMovie {

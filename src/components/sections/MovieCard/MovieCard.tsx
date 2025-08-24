@@ -4,8 +4,8 @@ import iconStyles from '@/components/ui/Button/Button.module.scss';
 import { Button } from '@/components/ui/Button';
 import { BaseMovie } from '@/types/movie';
 import { ButtonFavorite } from '@/components/ui/ButtonFavorite/ButtonFavorite';
-import StarIcon from '@/assets/Star.svg';
-import PlayIcon from '@/assets/Play.svg';
+import StarIcon from '@/assets/Star.svg?react';
+import PlayIcon from '@/assets/Play.svg?react';
 import { useNavigate } from 'react-router-dom';
 import { useSearch } from '@/context/SearchContext';
 import { fetchTrailerKey } from '@/utils/fetchTrailer';
@@ -26,7 +26,7 @@ export const MovieCard: React.FC<BaseMovie> = ({
   const { isFavorite, addFavorite, removeFavorite } = useFavoriteStore();
 
   const handleRedirect = () => {
-    resetSearch();
+    resetSearch?.();
     navigate(`/detail/${id}`);
   };
 

@@ -12,11 +12,11 @@ import { MovieDetail } from '@/types/movie';
 import { formatDateToIndoLong } from '@/utils/formatDate';
 import { fetchTrailerKey } from '@/utils/fetchTrailer';
 import { useFavoriteStore } from '@/store/useFavoriteStore';
-import CalendarIcon from '@/assets/Calendar.svg';
-import PlayIcon from '@/assets/Play.svg';
-import StarIcon from '@/assets/Star.svg';
-import VideoIcon from '@/assets/Video.svg';
-import HappyEmojiIcon from '@/assets/HappyEmoji.svg';
+import CalendarIcon from '@/assets/Calendar.svg?react';
+import PlayIcon from '@/assets/Play.svg?react';
+import StarIcon from '@/assets/Star.svg?react';
+import VideoIcon from '@/assets/Video.svg?react';
+import HappyEmojiIcon from '@/assets/HappyEmoji.svg?react';
 
 const FavoriteButton: React.FC<{
   isFavorite: boolean;

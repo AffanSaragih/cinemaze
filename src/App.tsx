@@ -8,14 +8,11 @@ import { Detail } from '@/pages/Detail';
 import Favorites from '@/pages/Favorites/Favorites';
 import { SearchProvider } from '@/context/SearchContext';
 import { ToastProvider } from '@/provider/ToastProvider/ToastProvider';
-import { useMovieStore } from '@/store/useMovieStore';
 import { SearchOverlayResults } from '@/components/ui/SearchOverlayResults/SearchOverlayResults';
 import './App.scss';
 
 function App() {
-  const { allMovies } = useMovieStore();
   const location = useLocation();
-  // const isFavoritePage = location.pathname === '/favorite'
 
   return (
     <ToastProvider>
@@ -23,7 +20,7 @@ function App() {
         <div className='app-root'>
           <Header />
           {location.pathname !== '/favorites' && (
-            <SearchOverlayResults movies={allMovies} />
+            <SearchOverlayResults />
           )}
 
           <main className='main-content'>

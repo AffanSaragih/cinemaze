@@ -8,6 +8,7 @@ export type SearchContextType = {
   openSearch: () => void;
   closeSearch: () => void;
   clearSearch: () => void;
+  resetSearch?: () => void;
 };
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
@@ -20,11 +21,12 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const openSearch = () => setSearchOpen(true);
   const closeSearch = () => setSearchOpen(false);
-  const clearSearch = () => {
+  const resetSearch = () => {
     setSearchTerm('');
     setSearchOpen(false);
   };
 
+  const clearSearch = resetSearch;
   return (
     <SearchContext.Provider
       value={{
@@ -34,6 +36,7 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({
         openSearch,
         closeSearch,
         clearSearch,
+        resetSearch,
       }}
     >
       {children}

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import iconStyles from '@/components/ui/Button/Button.module.scss';
-import PlayIcon from '@/assets/Play.svg';
+import PlayIcon from '@/assets/Play.svg?react';
 import styles from './Hero.module.scss';
 import { fetchTrailerKey } from '@/utils/fetchTrailer';
 import type { BaseMovie } from '@/types/movie';

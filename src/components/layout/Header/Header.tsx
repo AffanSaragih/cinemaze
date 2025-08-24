@@ -5,10 +5,10 @@ import styles from './Header.module.scss';
 import { SearchBox } from '@/components/ui/SearchBox/SearchBox';
 import { useSearch } from '@/context/SearchContext';
 
-import CloseIcon from '@/assets/CloseRound.svg';
-import LeftArrowIcon from '@/assets/LeftArrow.svg';
-import MenuIcon from '@/assets/HamburgerMenu.svg';
-import SearchIcon from '@/assets/Search.svg';
+import CloseIcon from '@/assets/CloseRound.svg?react';
+import LeftArrowIcon from '@/assets/LeftArrow.svg?react';
+import MenuIcon from '@/assets/HamburgerMenu.svg?react';
+import SearchIcon from '@/assets/Search.svg?react';
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);

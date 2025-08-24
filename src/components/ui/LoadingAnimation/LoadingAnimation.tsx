@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './LoadingAnimation.module.scss';
 import clsx from 'clsx';
-import LoadingIcon from '@/assets/bxs_tv.svg';
+import LoadingIcon from '@/assets/bxs_tv.svg?react';
 
 interface LoadingAnimationProps {
   text?: string;

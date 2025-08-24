@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export function useGridLayout<T = HTMLElement>() {
+export function useGridLayout() {
   const gridRef = useRef<HTMLDivElement>(null);
   const [cols, setCols] = useState(1);
   const [lastRowIndices, setLastRowIndices] = useState<number[]>([]);

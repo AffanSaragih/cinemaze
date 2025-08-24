@@ -1,22 +1,30 @@
 import { useState, useEffect } from 'react';
-import { getPopularMoviesChunk, Movie } from '@/services/getPopularMoviesChunk';
+import { getPopularMoviesChunk } from '@/services/getPopularMoviesChunk';
+import type { BaseMovie } from '@/types/movie';
 
 const LOAD_STEP = 100;
 
 export function usePopularMovies() {
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<BaseMovie[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    const fetchInitial = async () => {
+    let mounted = true;
+
+    (async () => {
       const initial = await getPopularMoviesChunk(0, LOAD_STEP);
-      setMovies(initial);
-      setCurrentPage(1);
+      if (mounted) {
+        setMovies(initial);
+        setCurrentPage(1);
+      }
+    })();
+
+    return () => {
+      mounted = false;
     };
-    fetchInitial();
   }, []);
 
-  const loadMore = async (cols: number) => {
+  const loadMore = async () => {
     const startIndex = currentPage * LOAD_STEP;
     const newMovies = await getPopularMoviesChunk(startIndex, LOAD_STEP);
     setMovies((prev) => [...prev, ...newMovies]);

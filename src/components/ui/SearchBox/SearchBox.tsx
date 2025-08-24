@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import clsx from 'clsx';
 import styles from './SearchBox.module.scss';
-import SearchIcon from '@/assets/Search.svg';
-import CloseIcon from '@/assets/Close.svg';
+import SearchIcon from '@/assets/Search.svg?react';
+import CloseIcon from '@/assets/Close.svg?react';
 import { useSearch } from '@/context/SearchContext';
 
 interface SearchBoxProps {

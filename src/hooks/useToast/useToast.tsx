@@ -17,7 +17,7 @@ export const useToastStore = create<ToastStore>((set) => ({
   showToast: (message, duration = 3000) => {
     const id = Date.now();
     const newToast = { id, message, duration };
-    set((state) => ({
+    set(() => ({
       toasts: [newToast],
     }));
   },
